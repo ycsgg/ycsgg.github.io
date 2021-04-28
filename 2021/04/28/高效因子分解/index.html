@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ycs_gg.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文主要包括了一些常见和不常见的高效因子分解算法，重点在于椭圆曲线法的讲解（虽然Dixon’s 的篇幅更多一些貌似）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高效因子分解">
+<meta property="og:url" content="https://ycs_gg.github.io/2021/04/28/%E9%AB%98%E6%95%88%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Asusetic">
+<meta property="og:description" content="本文主要包括了一些常见和不常见的高效因子分解算法，重点在于椭圆曲线法的讲解（虽然Dixon’s 的篇幅更多一些貌似）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-28T00:45:23.000Z">
+<meta property="article:modified_time" content="2021-04-28T00:59:30.290Z">
+<meta property="article:author" content="YCS_GG">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ycs_gg.github.io/2021/04/28/%E9%AB%98%E6%95%88%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>高效因子分解 | Asusetic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Asusetic</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ycs_gg.github.io/2021/04/28/%E9%AB%98%E6%95%88%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/upload/avatar.png">
+      <meta itemprop="name" content="YCS_GG">
+      <meta itemprop="description" content="Asusetic eru quinours.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Asusetic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高效因子分解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-28 08:45:23 / 修改时间：08:59:30" itemprop="dateCreated datePublished" datetime="2021-04-28T08:45:23+08:00">2021-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文主要包括了一些常见和不常见的高效因子分解算法，重点在于椭圆曲线法的讲解（虽然Dixon’s 的篇幅更多一些貌似）</p>
+<span id="more"></span>
+
+<p>主要参考为 Wikipedia 的 Integer Factorization 页面</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>质因数分解一直是一个密码学领域相当热门的话题，因为他直接关系着 RSA 等使用大素数相乘来加密的算法的安全性</p>
+<p>相比于</p>
+<ul>
+<li><p>求素数（筛法或者特殊的生成法）</p>
+</li>
+<li><p>素性测验(能做到$O((\log n))^{6+\epsilon}$)</p>
+</li>
+<li><p>素数计数（求$[1,n]$的素数个数，可以使用Meissel-Lehmer在亚线性复杂度内求解）</p>
+</li>
+</ul>
+<p>因数分解一直是一个很困难的内容</p>
+<p>现有的对于一般数字分解的最好算法是GNFS（General Number Field Sieve，一般数域筛）的复杂度为$L_n[\frac{1}{3},\sqrt[3]{\frac{64}{9}}]=\exp((\sqrt[3]{\frac{64}{9}}+o(1)(\ln n)^\frac{1}{3}(\ln\ln n)^{\frac{2}{3}})$</p>
+<p>能够分解上百位的合数</p>
+<p>而数域筛涉及到大量的代数数论的内容，故笔者在此介绍一些更加简单易懂的算法包括 ：</p>
+<p>Dixon’s ，CFRAC 和 Lanstra 椭圆曲线 算法</p>
+<p>大概只需要一些基本的数论知识（和一小点群论），同时给出了一个椭圆曲线法的Python Demo</p>
+<h2 id="基础的想法"><a href="#基础的想法" class="headerlink" title="基础的想法"></a>基础的想法</h2><h3 id="试除"><a href="#试除" class="headerlink" title="试除"></a>试除</h3><p>一个基础的想法是在$[2,\sqrt n]$的范围内试除，复杂度为$O(\sqrt n)$，虽然在 OI 里很多情况下都已经够用，但是对于分解数十甚至上百位整数的需求就难以接受</p>
+<h3 id="Fermat"><a href="#Fermat" class="headerlink" title="Fermat"></a>Fermat</h3><p>而 Fermat 分解提供了一个新的思路</p>
+<p>注意到若奇合数 $n=pq$ 那一定可以表示为两数平方差 $a^2-b^2$ 仅需取 $a=\frac{p+q}{2} \quad b=\frac{p-q}{2}$</p>
+<p>变形一下得到 $a^2-n=b^2$ 那我们枚举 $a$ 测试 $a^2-n$ 是否为完全平方数即可</p>
+<p>但是这样的复杂度为 $O(n)$ 甚至更慢，但是能够对更快的的质因数分解做出一定的启示</p>
+<p>比如我们考虑如果放宽要求 $a^2\equiv b^2 \pmod n$ 那么$\gcd(a - b,n)$ 就很可能是一个非平凡因子</p>
+<p>因为有$n|(a-b)(a+b)$，所以$\gcd(a-b,n) ,\gcd(a+b,n)$一定有一个因子 (只要不是 $a=\pm b$)</p>
+<h2 id="Pollard’s-Rho算法"><a href="#Pollard’s-Rho算法" class="headerlink" title="Pollard’s Rho算法"></a>Pollard’s Rho算法</h2><p>该算法是 OI 中<strong>不</strong>常用的算法之一，但是是一个极好的高效因数分解的例子</p>
+<p>Pollard’s Rho算法的思想是在接近随机的数列${x_i}:x_{i+1}= (x_i^2+c) \bmod n$</p>
+<p>出现$x_a\equiv x_b\pmod n$的期望步数为$O(\sqrt n)$ （根据生日悖论）</p>
+<p>而对于$n=pq$ 的 ${x_i \bmod p}$ 依然是接近随机行为的数列，同时期望为$O(\sqrt p)$</p>
+<p>于是只要$x_a\ne x_b$计算$\gcd(x_a-x_b,n)$就得到了一个$n$的非平凡因子</p>
+<p>于是我们得到了$O(\sqrt p)$或者说$O(n^{\frac{1}{4}})$的优秀算法</p>
+<h2 id="亚指数级"><a href="#亚指数级" class="headerlink" title="亚指数级"></a>亚指数级</h2><p>$O(n^{\frac{1}{4}})$已经很快的，在 OI 中大概也是极限了（再大建议物理解决出题人）</p>
+<p>但是它仍然不！够！快！</p>
+<p>下面是 Linux 下 <code>factor</code> 的速度（内部实现为 Pollard’s Rho）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">time factor 60000000000000003100000000000000033</span><br><span class="line">60000000000000003100000000000000033: 200000000000000003 300000000000000011</span><br><span class="line">factor 60000000000000003100000000000000033  38.38s user 0.00s system 99% cpu 38.383 total</span><br></pre></td></tr></table></figure>
+
+<p>可以看到分解仅 $35$ 位的合数就用了 $38$ s 这显然是不能接受的 （实际上 Linux 的跑的相当快,我写的丢人 Pollard’s Rho 跑了两分钟还没跑出来</p>
+<p>而我们完全可以用 Fermat 的想法做到更快的分解速度</p>
+<h3 id="Dixon’s-与-连分数-CFRAC"><a href="#Dixon’s-与-连分数-CFRAC" class="headerlink" title="Dixon’s 与 连分数 (CFRAC)"></a>Dixon’s 与 连分数 (CFRAC)</h3><p>为了方便的叙述先定义两个概念</p>
+<h4 id="因子基"><a href="#因子基" class="headerlink" title="因子基"></a>因子基</h4><p>一个因子基意味前几个素数的集合${p_1,p_2,p_3,\dots}$</p>
+<h4 id="L记号"><a href="#L记号" class="headerlink" title="L记号"></a>L记号</h4><p>L 记号同样是衡量时间复杂度的，$L_n[a,c]=\exp{(c+o(1)(\ln n)^a(\ln \ln n)^{1-a})}$</p>
+<p>其中 $c &gt; 0,a \in [0,1]$</p>
+<p>主要用来数论中算法的复杂度</p>
+<h4 id="Dixon’s"><a href="#Dixon’s" class="headerlink" title="Dixon’s"></a>Dixon’s</h4><p>Dixon’s 的主要思想是：</p>
+<p>选定一个大小为 $b$ 的因子基 $B$，选取一些数字$x_i$，使得 $x_i^2\bmod n=\prod p_i^{k_i}$ 的所有 $p_i \in B$ （显然不会所有的$k_i$都为偶数，否则就找到了一个$a^2\equiv b^2$）</p>
+<p>然后通过奥妙重重的方法选取一系列$x_i$使得 $\prod x_i \equiv (\prod p_i^{k_i})^2 \pmod n$</p>
+<p>这样我们就得到了一个$a^2 \equiv b^2 \pmod n$</p>
+<p>那我们怎么才能寻找到这个奥妙重重的方法呢？</p>
+<p>考虑 $\prod x_i \bmod n = \prod p_i^{a_{i,1}+a_{i,2}+a_{i,3}+\dots}$</p>
+<p>令 $\vec{a_i}=(a_{i,1} \bmod 2,a_{i,2} \bmod 2, \dots ,a_{i,k} \bmod 2) \in(\mathbb{Z}_{2})^k$</p>
+<p>可以用高斯消元解出来向量 $\vec{a}=(0,0,0,\dots,0) \in (\mathbb{Z}_2)^k$</p>
+<p>把对应的数字乘起来即可</p>
+<p>而 $x_i$ 的选取则是完全随机的（</p>
+<p>大概分析下复杂度</p>
+<p>对于确定的 $b=n^{-\alpha}$ 而言 找到一个合适的 $x$ 的概率大概是是 $a^{-\alpha}$ （这实际上Dickman function $\rho$ 的一个近似，之后我们会在椭圆曲线那里讨论） </p>
+<p>而对于这个 $b$ 我们仅需找到 $\pi(b)$ 个 $x$ 即可总共随机约 $\exp{(\alpha+1)\ln \alpha +\frac{\ln n}{\alpha} -\ln\ln n}$ 次数 每次需要 $\pi(b)$ 次试除</p>
+<p>取 $\alpha=2\sqrt{\frac{\ln n}{\ln \ln n}}$ 得到复杂度约为$L_n[\frac{1}{2},2\sqrt2]$</p>
+<h3 id="连分数-CFRAC"><a href="#连分数-CFRAC" class="headerlink" title="连分数(CFRAC)"></a>连分数(CFRAC)</h3><p>笔者并没有系统的学习过连分数相关的理论，故仅在此给出简单的介绍</p>
+<p>连分数因数分解实际上在 Dixon’s 上的一个优化</p>
+<p>我们发现如果 $x^2 \bmod n$ 比较小的话就容易分解</p>
+<p>那么用周期连分数表示 $\sqrt {kn}$ 来得到比较好的精度 这样可以做到 $L_n[\frac{1}{2},    \sqrt2]$</p>
+<p>(抄的Wikipedia，如果有懂的大佬希望可以给出相关文献QAQ)</p>
+<h3 id="二次筛"><a href="#二次筛" class="headerlink" title="二次筛"></a>二次筛</h3><p>二次筛法同样是对 Dixon’s 的优化，可以做到 $L_n[\frac{1}{2},1]$ 在 GNFS 之前一直是最快的因子分解算法</p>
+<p>具体原理在学了，学会了也许会单独写一篇</p>
+<h2 id="椭圆曲线法"><a href="#椭圆曲线法" class="headerlink" title="椭圆曲线法"></a>椭圆曲线法</h2><p>虽然椭圆曲线法同样是亚指数级别的，但是因为要给出比较详细的讲解故将其分离了出来</p>
+<h3 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h3><h4 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h4><p><del>椭圆曲线是域上亏格为1的光滑射影曲线</del> </p>
+<p>我们可以理解为形如 $y^2=x^3+ax+b$ 的曲线</p>
+<h4 id="B-smooth"><a href="#B-smooth" class="headerlink" title="B-smooth"></a>B-smooth</h4><p>当我们说 $n$ 是 B-smooth 的指的是 $n$ 所有的质因子都小于等于 $B$</p>
+<h4 id="B-powersmooth"><a href="#B-powersmooth" class="headerlink" title="B-powersmooth"></a>B-powersmooth</h4><p>同样的，B-powersmooth 指的是 $n$ 的任意因子的次幂不超过 $B$ 例如 $2^4 \times 3^2$ 是 16-powersmooth的</p>
+<h4 id="椭圆曲线群"><a href="#椭圆曲线群" class="headerlink" title="椭圆曲线群"></a>椭圆曲线群</h4><p>我们在椭圆曲线上的点 $P,Q$ 定义加法为 $P+Q=T$，$T$是椭圆曲线上 $P,Q$ 两点连线的第三个交点的关于 $x$ 轴的对称点（这样定义是为了保持群的结构和交换）</p>
+<p>定义自己加自己是沿着自己的切线的交点</p>
+<p>再定义无穷远点记作$O$，容易验证椭圆曲线上的点加上点 $O$ 和加法构成结构是一个阿贝尔群，点 $O$ 是其幺元</p>
+<h3 id="Pollard’s-p-1"><a href="#Pollard’s-p-1" class="headerlink" title="Pollard’s p-1"></a>Pollard’s p-1</h3><p>虽然 Pollard’s p-1 算法甚至不是正确的（不一定能得到答案）</p>
+<p>但是它仍然有着借鉴意义</p>
+<p>Pollard’s p-1 算法的思想是如果 $n=pq$</p>
+<p>那么  $a^{k(p-1)} \equiv 1 \pmod p$ （费马小定理）</p>
+<p>如果 $a$ 的 某个幂次是模 $n$ 的因子同余于 $1$ 那么 $\gcd(a-1,n)$ 大概率是一个 $n$ 的非平凡因子</p>
+<p>我们选取一个 B-smooth 的数字 $M$ ，然后计算 $\gcd(x^M,n)$ 重复多次以寻找因子</p>
+<p>而 $x$ 需要选取互质于 $n$ 的数字 对于奇合数来说选 $2$ 即可</p>
+<h3 id="椭圆曲线法-1"><a href="#椭圆曲线法-1" class="headerlink" title="椭圆曲线法"></a>椭圆曲线法</h3><p>我们将椭圆曲线限制在有理点上，可以发现群的结构仍然保持</p>
+<p>我们可以考虑有限域$\mathbb{F}_q$而非有理域，因为我们不需要有理数的结构</p>
+<p>考虑椭圆曲线上的加法过程</p>
+<p>令 $s=\frac{3x^2+a}{2y}$</p>
+<p>则 $2(x,y)=(s^2-2x,y+s(u-x))$</p>
+<p>如果我们在 $E(\mathbb{Z}/n\mathbb{Z})$ 下出现了无法除 $2y$ 的情况 ，那么我们在模 $n$ 意义下出现了不存在的逆元，也就是 $\gcd(n,t)\neq1$ 我们就大概率找到了一个因子</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><ol>
+<li><p>选定一条曲线 $y^2=x^3+ax+b$ 与非平凡点 $P$</p>
+</li>
+<li><p>选定素数上界 $B$</p>
+</li>
+<li><p>计算 $(\prod\limits_{p_i&lt;B}p_i^{\ln B/\ln p_i})P$  （$\ln B/\ln p_i$ 是为了保证这个数 B-powersmooth）</p>
+</li>
+<li><p>加法过程中寻找因子</p>
+</li>
+</ol>
+<h3 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h3><p>可以发现我们的基本思想是和 Pollard’s p-1 相同，只不过把质数改成了在椭圆曲线群上的加法</p>
+<p>所以它为什么比Pollard’s p-1 要好呢？</p>
+<p>Pollard’s p-1 的本质在于在群 $\mathbb{Z}_q \times \mathbb{Z}_p$ 中找到了一个 $\mathbb{Z}_p$ 的幺元 $e_p$ 但是非 $\mathbb{Z}_q$ 的幺元</p>
+<p>而这个群的阶 $p-1$ 不一定是一个 B-powersmooth 的数</p>
+<p>而根据 Hasse 定理，椭圆曲线群 $|E(\mathbb{Z}/p\mathbb{Z})|\in[p+1-2\sqrt p,p+1+2\sqrt p]$</p>
+<p>这样群的阶就会有变化，避免了不 powersmooth 的问题</p>
+<p>进一步我们考虑曲线 $y^2=x^3+ax+b$ 分别在模 $p$ $q$ 意义下的群 $E(\mathbb{Z}/p\mathbb{Z})$ 与 $E(\mathbb{Z}/q\mathbb{Z})$ （假设 $n=pq$）</p>
+<p>记他们的元素数量为 $N_q$ $N_p$ </p>
+<p>根据拉格朗日定理（$|G|=[G:H]\times |H|$）若 $kP=O \pmod p$ </p>
+<p>那么$N_pP=O \pmod p$</p>
+<p>于是和 Pollard’s p-1 一样，如果我们找到了某个 $k$ 使得 $kP=O \pmod p$ 但不是$E(\mathbb{Z}/q\mathbb{Z})$ 中 $P$ 的阶，此时我们就找到一个因子</p>
+<h4 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h4><p>找到一个可分解的椭圆曲线群的概率为 $B\ln^2n$</p>
+<p>若设$B=p^{-a}$ 终止的概率为 $a^{-a}$</p>
+<p>和 Dixon’s 一样的分析能得到复杂度大致为 $L_p[\frac{1}{2},\sqrt2]$ $p$ 为 $n$ 的最小素因子</p>
+<p>可以看到椭圆曲线法的复杂度主要取决于 $n$ 的最小素因子大小而非 $n$ </p>
+<p>所以椭圆曲线法可以快速去除一些小的素因子（大约 $30 \sim 40$ 位的素因子）</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>操作中选取曲线上的非平凡点这个行为可以变为随机一个点然后生成一个曲线</p>
+<p>对于点 $(x,y)$ 选取一个 $a$ 计算得到 $b=y^3-x^3-ax$</p>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> gcd</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">EulerSieve</span>(<span class="params">n</span>):</span></span><br><span class="line">    vis = [<span class="literal">True</span>] * (n + <span class="number">1</span>)</span><br><span class="line">    primes = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> vis[i]:</span><br><span class="line">            primes.append(i)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> primes:</span><br><span class="line">            <span class="keyword">if</span> i * j &gt; n:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            vis[i * j] = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> i % j == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> primes</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exgcd</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>, <span class="number">0</span>, a</span><br><span class="line">    q, r = <span class="built_in">divmod</span>(a, b)</span><br><span class="line">    x, y, d = exgcd(b, r)</span><br><span class="line">    <span class="keyword">return</span> y, x - q * y, d</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">elliptic_add</span>(<span class="params">p, q, a, b, m</span>):</span></span><br><span class="line">    <span class="keyword">if</span> p[<span class="number">2</span>] == <span class="number">0</span>: </span><br><span class="line">        <span class="keyword">return</span> q</span><br><span class="line">    <span class="keyword">if</span> q[<span class="number">2</span>] == <span class="number">0</span>: </span><br><span class="line">        <span class="keyword">return</span> p</span><br><span class="line">    <span class="keyword">if</span> p[<span class="number">0</span>] == q[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">if</span> (p[<span class="number">1</span>] + q[<span class="number">1</span>]) % m == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        num = (<span class="number">3</span> * p[<span class="number">0</span>] * p[<span class="number">0</span>] + a) % m</span><br><span class="line">        denom = (<span class="number">2</span> * p[<span class="number">1</span>]) % m</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        num = (q[<span class="number">1</span>] - p[<span class="number">1</span>]) % m</span><br><span class="line">        denom = (q[<span class="number">0</span>] - p[<span class="number">0</span>]) % m</span><br><span class="line">    inv, _, g = modular_inv(denom, m)</span><br><span class="line">    <span class="keyword">if</span> g &gt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>, <span class="number">0</span>, denom  </span><br><span class="line">    z = (num * inv * num * inv - p[<span class="number">0</span>] - q[<span class="number">0</span>]) % m</span><br><span class="line">    <span class="keyword">return</span> z, (num * inv * (p[<span class="number">0</span>] - z) - p[<span class="number">1</span>]) % m, <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">elliptic_mul</span>(<span class="params">k, p, a, b, m</span>):</span></span><br><span class="line">    res = (<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">while</span> k &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> p[<span class="number">2</span>] &gt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> p</span><br><span class="line">        <span class="keyword">if</span> k % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">            res = elliptic_add(p, res, a, b, m)</span><br><span class="line">        k = k // <span class="number">2</span></span><br><span class="line">        p = elliptic_add(p, p, a, b, m)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lenstra</span>(<span class="params">n, limit</span>):</span></span><br><span class="line">    g = n</span><br><span class="line">    <span class="keyword">while</span> g == n:</span><br><span class="line">        q = randint(<span class="number">0</span>, n - <span class="number">1</span>), randint(<span class="number">0</span>, n - <span class="number">1</span>), <span class="number">1</span></span><br><span class="line">        a = randint(<span class="number">0</span>, n - <span class="number">1</span>)</span><br><span class="line">        b = (q[<span class="number">1</span>] * q[<span class="number">1</span>] - q[<span class="number">0</span>] * q[<span class="number">0</span>] * q[<span class="number">0</span>] - a * q[<span class="number">0</span>]) % n</span><br><span class="line">        g = gcd(<span class="number">4</span> * a * a * a + <span class="number">27</span> * b * b, n) </span><br><span class="line">    <span class="keyword">if</span> g &gt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> g</span><br><span class="line">    primes=EulerSieve(limit)</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> primes:</span><br><span class="line">        pp = p</span><br><span class="line">        <span class="keyword">while</span> pp &lt; limit:</span><br><span class="line">            q = elliptic_mul(p, q, a, b, n)</span><br><span class="line">            <span class="keyword">if</span> q[<span class="number">2</span>] &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> gcd(q[<span class="number">2</span>], n)</span><br><span class="line">            pp = p * pp</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    n=<span class="number">998244354</span></span><br><span class="line">    B=<span class="number">7000</span></span><br><span class="line">    curve_count=<span class="number">200</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(curve_count):</span><br><span class="line">        res=lenstra(n, B)</span><br><span class="line">        <span class="keyword">if</span> res != <span class="literal">False</span>:</span><br><span class="line">            <span class="built_in">print</span>(res)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<h3 id="一些优化"><a href="#一些优化" class="headerlink" title="一些优化"></a>一些优化</h3><h4 id="B的选定"><a href="#B的选定" class="headerlink" title="B的选定"></a>B的选定</h4><p>如果定义 $\Phi(x,y)$ 为 $\le x$ 的 y-smooth 的数的个数，那么 $\Phi(x,x^{-a}) \sim x\rho(a)$</p>
+<p>其中 $\rho$ 是之前提到过的 Dickman Function ，定义为 $x\rho’(x)+\rho(x-1)=0$</p>
+<p>我们希望最小化 $\Phi(p,B)^{-1}\pi(B)$ 的值</p>
+<p>如果采用近似 $\Phi(n,n^{-a}) \sim n\rho(a) \quad \pi(B) \sim \mathrm{Li}(B)$</p>
+<p>可以用牛顿迭代一类的方法找极值，当然通常使用经验对 $30$ 位左右的数字用 $7000$ 的 B 即可</p>
+<h4 id="多曲线"><a href="#多曲线" class="headerlink" title="多曲线"></a>多曲线</h4><p>我们可以一次性生成多条曲线，一起在这多条曲线上做加法，这样只要有一个曲线上找到了因子就可以退出</p>
+<p>求逆元的时候也可以先求一次然后然后用乘法来算其他逆元，你一个个求要快</p>
+<h4 id="蒙哥马利取模"><a href="#蒙哥马利取模" class="headerlink" title="蒙哥马利取模"></a>蒙哥马利取模</h4><p>Min_25 的博客有过介绍</p>
+<p>核心步骤Reduce: （ $x \in [0,rn)$ 返回 $xn^{-1} \bmod r$）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reduce</span>(<span class="params">x</span>):</span></span><br><span class="line">    m=((x%n)*(inv(r)))%n</span><br><span class="line">    x=(x-m*r)//n</span><br><span class="line">    <span class="keyword">if</span> x&gt;=r:</span><br><span class="line">        <span class="keyword">return</span> x-r</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<p>究其本质大概是在 $n,r$ 互质的情况下映射 $f(a)=an$ 是 $\mathbb{F}_r$ 的自同态？</p>
+<p>大量乘法取模的时候实际效率很高</p>
+<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><p>太菜了写不动这个东西，给一份 zball 大佬的实现，效率极高</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/eha6wtkl">Here</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.20788920s consumed</span><br><span class="line">200000000000000003 300000000000000011</span><br></pre></td></tr></table></figure>
+
+<p>比 <code>factor</code> 快上百倍、</p>
+<p>同时 wikipedia 上也列举了许多 ecm 的高效实现，可以在 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Lenstra_elliptic-curve_factorization#External_links">Wikipedia</a>中查看（需独特的上网技巧）</p>
+<p><strong>Asusetic eru quionours</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/28/TEST/" rel="prev" title="TEST">
+      <i class="fa fa-chevron-left"></i> TEST
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/28/%E8%AE%B0%E4%B8%80%E9%81%93%E6%95%B0%E5%AD%A6%E9%A2%98/" rel="next" title="记一道数学题">
+      记一道数学题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9A%84%E6%83%B3%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">基础的想法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%95%E9%99%A4"><span class="nav-number">2.1.</span> <span class="nav-text">试除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fermat"><span class="nav-number">2.2.</span> <span class="nav-text">Fermat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pollard%E2%80%99s-Rho%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">Pollard’s Rho算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%9A%E6%8C%87%E6%95%B0%E7%BA%A7"><span class="nav-number">4.</span> <span class="nav-text">亚指数级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dixon%E2%80%99s-%E4%B8%8E-%E8%BF%9E%E5%88%86%E6%95%B0-CFRAC"><span class="nav-number">4.1.</span> <span class="nav-text">Dixon’s 与 连分数 (CFRAC)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%A0%E5%AD%90%E5%9F%BA"><span class="nav-number">4.1.1.</span> <span class="nav-text">因子基</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#L%E8%AE%B0%E5%8F%B7"><span class="nav-number">4.1.2.</span> <span class="nav-text">L记号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dixon%E2%80%99s"><span class="nav-number">4.1.3.</span> <span class="nav-text">Dixon’s</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E5%88%86%E6%95%B0-CFRAC"><span class="nav-number">4.2.</span> <span class="nav-text">连分数(CFRAC)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E7%AD%9B"><span class="nav-number">4.3.</span> <span class="nav-text">二次筛</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">椭圆曲线法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%AE%9A%E4%B9%89"><span class="nav-number">5.1.</span> <span class="nav-text">一些定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF"><span class="nav-number">5.1.1.</span> <span class="nav-text">椭圆曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-smooth"><span class="nav-number">5.1.2.</span> <span class="nav-text">B-smooth</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-powersmooth"><span class="nav-number">5.1.3.</span> <span class="nav-text">B-powersmooth</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E7%BE%A4"><span class="nav-number">5.1.4.</span> <span class="nav-text">椭圆曲线群</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pollard%E2%80%99s-p-1"><span class="nav-number">5.2.</span> <span class="nav-text">Pollard’s p-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E6%B3%95-1"><span class="nav-number">5.3.</span> <span class="nav-text">椭圆曲线法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">5.4.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">5.5.</span> <span class="nav-text">算法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">5.5.1.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.6.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Demo"><span class="nav-number">5.6.1.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%BC%98%E5%8C%96"><span class="nav-number">5.7.</span> <span class="nav-text">一些优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#B%E7%9A%84%E9%80%89%E5%AE%9A"><span class="nav-number">5.7.1.</span> <span class="nav-text">B的选定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%9B%B2%E7%BA%BF"><span class="nav-number">5.7.2.</span> <span class="nav-text">多曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%92%99%E5%93%A5%E9%A9%AC%E5%88%A9%E5%8F%96%E6%A8%A1"><span class="nav-number">5.7.3.</span> <span class="nav-text">蒙哥马利取模</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.8.</span> <span class="nav-text">C++实现</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="YCS_GG"
+      src="/upload/avatar.png">
+  <p class="site-author-name" itemprop="name">YCS_GG</p>
+  <div class="site-description" itemprop="description">Asusetic eru quinours.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ycsgg" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ycsgg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ycs_gg@outlook.com" title="E-Mail → mailto:ycs_gg@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YCS_GG</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
