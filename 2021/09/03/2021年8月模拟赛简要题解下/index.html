@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ycs_gg.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="人世几回伤往事，山形依旧枕寒流。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021年8月模拟赛简要题解·下">
+<meta property="og:url" content="https://ycs_gg.github.io/2021/09/03/2021%E5%B9%B48%E6%9C%88%E6%A8%A1%E6%8B%9F%E8%B5%9B%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3%E4%B8%8B/index.html">
+<meta property="og:site_name" content="Asusetic">
+<meta property="og:description" content="人世几回伤往事，山形依旧枕寒流。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-03T21:08:43.000Z">
+<meta property="article:modified_time" content="2021-11-15T07:29:32.606Z">
+<meta property="article:author" content="YCS_GG">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ycs_gg.github.io/2021/09/03/2021%E5%B9%B48%E6%9C%88%E6%A8%A1%E6%8B%9F%E8%B5%9B%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3%E4%B8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2021年8月模拟赛简要题解·下 | Asusetic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Asusetic</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-comments">
+
+    <a href="/comments/" rel="section"><i class="fas fa-comments fa-fw"></i>评论</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ycs_gg.github.io/2021/09/03/2021%E5%B9%B48%E6%9C%88%E6%A8%A1%E6%8B%9F%E8%B5%9B%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3%E4%B8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/upload/avatar.png">
+      <meta itemprop="name" content="YCS_GG">
+      <meta itemprop="description" content="Asusetic eru quinours.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Asusetic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2021年8月模拟赛简要题解·下
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-03 21:08:43" itemprop="dateCreated datePublished" datetime="2021-09-03T21:08:43+00:00">2021-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">模拟赛</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/03/2021%E5%B9%B48%E6%9C%88%E6%A8%A1%E6%8B%9F%E8%B5%9B%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3%E4%B8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/03/2021%E5%B9%B48%E6%9C%88%E6%A8%A1%E6%8B%9F%E8%B5%9B%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3%E4%B8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>人世几回伤往事，山形依旧枕寒流。</p>
+<span id="more"></span>
+
+<h2 id="2021-08-17"><a href="#2021-08-17" class="headerlink" title="2021.08.17"></a>2021.08.17</h2><h3 id="A-魔力"><a href="#A-魔力" class="headerlink" title="A.魔力"></a>A.魔力</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/559">魔力</a></p>
+<p>设 $cnt_i$ 为字符 $i$ 出现的次数，那么题目求的就是所有 $cnt_i$ 均相等的区间个数</p>
+<p>因为 $cnt_i$ 不固定，所以做个差分可以发现当且仅当差分为 $0$ 的时候合法</p>
+<p>那么从 $1$ 开始拓展记录 $cnt$ 差分，如果出现了两个地方的 $cnt$ 差分数组相同，那么这两个 $cnt$ 差分数组相减就是全 $0$</p>
+<p>记录一个 vector 的 map 即可</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/18060">code</a></p>
+<h3 id="B-粒子"><a href="#B-粒子" class="headerlink" title="B.粒子"></a>B.粒子</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/116/problem/560">粒子</a></p>
+<p>就是一大堆一次函数求第一次交点</p>
+<p>二分时间即可</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/18105">code</a></p>
+<h3 id="C-六"><a href="#C-六" class="headerlink" title="C.六"></a>C.六</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/561">六</a></p>
+<p>状压</p>
+<p>发现只压某个质因子出现的次数是不行的</p>
+<p>因为 $(2,3)$ $(6)$ 质因子出现次数相同，但是可以转移的状态不同</p>
+<p>还需要记录一个每一对质因子能否同时出现在一个数里的状态</p>
+<p>这里只需要二进制 $\dfrac{cnt(cnt-1)}{2}$ 位，质因子是三进制状压</p>
+<p>记录一个 pair 去转移即可</p>
+<p>考的时候没想到再去记录一个二进制位</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/18424">code</a></p>
+<h3 id="D-多重集合问题"><a href="#D-多重集合问题" class="headerlink" title="D.多重集合问题"></a>D.多重集合问题</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/623">多重集合问题</a></p>
+<p>经典题目，整体二分</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/18154">code</a></p>
+<h2 id="2021-08-18"><a href="#2021-08-18" class="headerlink" title="2021.08.18"></a>2021.08.18</h2><h3 id="A-引子"><a href="#A-引子" class="headerlink" title="A.引子"></a>A.引子</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/contest/117/problem/624">引子</a></p>
+<p>大模拟，注意数字可以是多位数</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/18505">code</a></p>
+<h3 id="B-可爱精灵宝贝"><a href="#B-可爱精灵宝贝" class="headerlink" title="B.可爱精灵宝贝"></a>B.可爱精灵宝贝</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/contest/117/problem/625">可爱精灵宝贝</a></p>
+<p>记录 $dp_{l,r,t,0/1}$ 表示拿完 $[l,r]$ 的物品后时间为 $t$ 且在 左/右 端点上的最大价值</p>
+<p>分类讨论转移</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/18796">code</a></p>
+<h3 id="C-相互再归的鹅妈妈"><a href="#C-相互再归的鹅妈妈" class="headerlink" title="C.相互再归的鹅妈妈"></a>C.相互再归的鹅妈妈</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/626">相互再归的鹅妈妈</a></p>
+<p>钦定有些人能选同一个然后斯特林反演</p>
+<p>不会写</p>
+<h3 id="D-盟誓的文艺复兴"><a href="#D-盟誓的文艺复兴" class="headerlink" title="D.盟誓的文艺复兴"></a>D.盟誓的文艺复兴</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/627">盟誓的文艺复兴</a></p>
+<p>首先注意到只有 $c=2,3$ 是有意义的，别的都可以拆成 $c=2.3$ 的情况</p>
+<p>$c=2$ 的情况就是</p>
+<p>$\sum\limits_{i=1}^{\sqrt[3]{n}} \mu^2(i)(\sqrt{\dfrac{n}{i}}-i)$</p>
+<p>即枚举无完全平方因子的数，然后乘上能选的数字 ($a&lt;b$)</p>
+<p>$c=3$ 比较复杂</p>
+<p>先把 $c=2$ 统计过的排除掉</p>
+<p>设 $k$ 是满足 $k^2 | ab$ 最大数字</p>
+<p>那么 $ab^3 = (\dfrac{ab}{k^2})(bk)^2$</p>
+<p>考虑如果之前没被统计过需要满足 $\dfrac{ab}{k^2}&gt;bk \Rightarrow a \ge k^3$</p>
+<p>定义 $\mu_3(x) := [\not\exist d^3|x,d\neq 1]$</p>
+<p>即没有完全三次方因子</p>
+<p>式子是</p>
+<p>$\huge\sum\limits_{a=1}^{\sqrt[4]{n}}\mu_3(i)\sum\limits_{k^3\le a}\sum\limits_{b=a+1}^{\sqrt[3]{\frac{n}{a}}}[k^2|ab]\mu^2(\dfrac{ab}{k^2})$</p>
+<p>然后设 $g=\gcd(a,k^2),a’=\dfrac{a}{g},k’=\dfrac{k^2}{g},b’=\dfrac{b}{k’}$ （神奇代换，不懂原理）</p>
+<p>$\huge\sum\limits_{a=1}^{\sqrt[4]{n}}\mu_3(i)\sum\limits_{k^3\le a}\sum\limits_{b’=\frac{a}{k’}+1}^{\frac{\sqrt[3]{\frac{n}{a}}}{k’}}\mu^2(a’b’)$</p>
+<p>$\mu(ab)= \mu(a)\mu(b)[\gcd(a,b)=1]$</p>
+<p>所以</p>
+<p>$\huge\sum\limits_{a=1}^{\sqrt[4]{n}}\mu_3(i)\sum\limits_{k^3\le a}\mu^2(a’)\sum\limits_{b’=\frac{a}{k’}+1}^{\frac{\sqrt[3]{\frac{n}{a}}}{k’}}\mu^2(b’)[\gcd(a’,b’)=1]$</p>
+<p>反演掉 $[\gcd(a,b)=1]$</p>
+<p>$\huge\sum\limits_{a=1}^{\sqrt[4]{n}}\mu_3(i)\sum\limits_{k^3\le a}\mu^2(a’)\sum\limits_{d|a’}\mu(d)\sum\limits_{b’=\frac{a}{k’}+1}^{\frac{\sqrt[3]{\frac{n}{a}}}{k’}}[d|b’]\mu^2(b’)$</p>
+<p>枚举的其实都挺小的，可以大力预处理</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/18993">code</a></p>
+<h2 id="2021-08-19"><a href="#2021-08-19" class="headerlink" title="2021.08.19"></a>2021.08.19</h2><h3 id="A-没有硝烟的战争"><a href="#A-没有硝烟的战争" class="headerlink" title="A.没有硝烟的战争"></a>A.没有硝烟的战争</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/632">没有硝烟的战争</a></p>
+<p>类似 SG 的方法，记录 $dp_{i,j}$ 表示第 $i$ 个动物报了 $j$ 能不能赢</p>
+<p>如果它的下一个是同种族并且 $[j+1,j+k]$ 中有一个必胜他就必胜</p>
+<p>否则必败，下一个是不同种族且 $[j+1,j+k]$ 中有一个必胜他就必败，否则必胜</p>
+<p>大力转移 $O((n+m)m)$</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/19194">code</a></p>
+<h3 id="B-秘密通道"><a href="#B-秘密通道" class="headerlink" title="B.秘密通道"></a>B.秘密通道</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/633">秘密通道</a></p>
+<p>能连的边全连上跑最短路</p>
+<p>具体来说是把一个位置上下左右的四个墙按到最近的墙的距离连上</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/19158">code</a></p>
+<h3 id="C-城市猎人"><a href="#C-城市猎人" class="headerlink" title="C.城市猎人"></a>C.城市猎人</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/contest/119/problem/634">城市猎人</a></p>
+<p>每天会把 $m-i+1$ 的倍数的城市全都连起来，类似克鲁斯卡尔重构树，记录连接的过成为一个树，找 LCA 即可</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/19253">code</a></p>
+<h3 id="D-无限远点的牵牛星"><a href="#D-无限远点的牵牛星" class="headerlink" title="D.无限远点的牵牛星"></a>D.无限远点的牵牛星</h3><p><a target="_blank" rel="noopener" href="https://ycsgg.github.io/2021/08/19/UER-6-%E9%80%83%E8%B7%91/">题解</a></p>
+<h2 id="2021-08-20"><a href="#2021-08-20" class="headerlink" title="2021.08.20"></a>2021.08.20</h2><h3 id="A-路径计数"><a href="#A-路径计数" class="headerlink" title="A.路径计数"></a>A.路径计数</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/508">路径计数</a></p>
+<p>四点四边的无向图欧拉回路技术</p>
+<p>不太可做</p>
+<p>考虑给无向边定向，实际上定了一个向因为要有欧拉回路所以剩下的也都出来了</p>
+<p>枚举第一条边多少个边定正向，跑 BEST 定理</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/20005">code</a></p>
+<h3 id="B-BRT"><a href="#B-BRT" class="headerlink" title="B.BRT"></a>B.BRT</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/562">BRT</a></p>
+<p>记忆化可以水过去</p>
+<p>没有梦想，没敢写</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/20056">code</a></p>
+<h3 id="C-xor"><a href="#C-xor" class="headerlink" title="C.xor"></a>C.xor</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/563">xor</a></p>
+<p>见 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF241B">Friends</a></p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/19798">code</a></p>
+<h3 id="D-核糖"><a href="#D-核糖" class="headerlink" title="D.核糖"></a>D.核糖</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/564">核糖</a></p>
+<p>同 [旅行规划]</p>
+<p>就是区间加等差数列，区间查最大值</p>
+<p>分块，块内维护凸包即可</p>
+<p>（然而暴力可过</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/19692">核糖</a></p>
+<h2 id="2021-08-21"><a href="#2021-08-21" class="headerlink" title="2021.08.21"></a>2021.08.21</h2><h3 id="A-赛"><a href="#A-赛" class="headerlink" title="A.赛"></a>A.赛</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/749">赛</a></p>
+<p><del>wqs二分</del></p>
+<p>贪心的考虑先选两个人都喜欢的，然后选各自喜欢的，最后选不喜欢的补齐</p>
+<p>需要查询前 $k$ 小，可以用可删堆做，或者干脆排完序拿指针模拟</p>
+<p>挺难写的</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/20210">code</a></p>
+<h3 id="B-Merchant"><a href="#B-Merchant" class="headerlink" title="B.Merchant"></a>B.Merchant</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/750">Merchant</a></p>
+<p>一堆一次函数，求前 $m$ 大总和超过 $S$ 的最小时间</p>
+<p>虽然前 $m$ 大不随时间单调，但是一定呈现一个先降后升或上升的形式，所以特判 $0$ 是否有解即可</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/20204">code</a></p>
+<h3 id="C-Equation"><a href="#C-Equation" class="headerlink" title="C.Equation"></a>C.Equation</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/751">Equation</a></p>
+<p>手动处理下，每个点都能表示成 $x_1\pm w$ 的形式，可以 dfs 一遍预处理符号</p>
+<p>修改操作是是一个子树的修改，查询只要知道 $w$ 和符号就能解方程</p>
+<p>没开 long long 挂大分</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/20535">code</a></p>
+<h3 id="D-Rectangle"><a href="#D-Rectangle" class="headerlink" title="D.Rectangle"></a>D.Rectangle</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/752">Rectangle</a></p>
+<p>暂咕</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/20753">code</a></p>
+<h2 id="2021-08-23"><a href="#2021-08-23" class="headerlink" title="2021.08.23"></a>2021.08.23</h2><h3 id="A-xor"><a href="#A-xor" class="headerlink" title="A.xor"></a>A.xor</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/773">xor</a></p>
+<p>先前缀异或一下转化成区间内两个点最大异或值</p>
+<p>考虑大力分块，$pre_{i,j}$ 表示块 $i$ ，第 $j$ 位前缀最大两点异或值</p>
+<p>用可持久化 Trie 找即可</p>
+<p>$O((n+q)\sqrt n\log w)$</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/21072">code</a></p>
+<h3 id="B-magic"><a href="#B-magic" class="headerlink" title="B.magic"></a>B.magic</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/774">magic</a></p>
+<p>字符集巨大的 AC 自动机</p>
+<p>考虑 AC 自动机建立 fail 指针的过程，是要继承自 fail 的转移边，如果字符集很大暴力扫是不可取的，但是继承这个操作可以想到可持久化数据结构，用主席树就可以很好的维护树上的继承关系</p>
+<p>主席树太不熟练了，写挂了调到考完</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/21207">code</a></p>
+<h3 id="C-strGame"><a href="#C-strGame" class="headerlink" title="C.strGame"></a>C.strGame</h3><p><a target="_blank" rel="noopener" href="https://sjzezoj.com/problem/775">strGame</a></p>
+<p>类似SG，但是多局之间有影响，考虑多分些状态表示必胜，必败，能控制必胜必败和被控制</p>
+<p>Trie 上 dfs 求出状态</p>
+<p>如果是必胜那么只能赢奇数轮，能控制必胜必败就一定能赢</p>
+<p>否则必败</p>
+<p><a target="_blank" rel="noopener" href="https://sjzezoj.com/submission/20949">code</a></p>
+<h3 id="D-神秘数问题"><a href="#D-神秘数问题" class="headerlink" title="D.神秘数问题"></a>D.神秘数问题</h3><p><a target="_blank" rel="noopener" href="https://uoj.ac/contest/20/problem/140">被粉碎的数字</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/03/2021-09-03%E6%A8%A1%E6%8B%9F%E8%B5%9B/" rel="prev" title="2021.09.03模拟赛">
+      <i class="fa fa-chevron-left"></i> 2021.09.03模拟赛
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/06/2021-09-06%E6%A8%A1%E6%8B%9F%E8%B5%9B/" rel="next" title="2021.09.06模拟赛">
+      2021.09.06模拟赛 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2021-08-17"><span class="nav-number">1.</span> <span class="nav-text">2021.08.17</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E9%AD%94%E5%8A%9B"><span class="nav-number">1.1.</span> <span class="nav-text">A.魔力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E7%B2%92%E5%AD%90"><span class="nav-number">1.2.</span> <span class="nav-text">B.粒子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E5%85%AD"><span class="nav-number">1.3.</span> <span class="nav-text">C.六</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E5%A4%9A%E9%87%8D%E9%9B%86%E5%90%88%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">D.多重集合问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021-08-18"><span class="nav-number">2.</span> <span class="nav-text">2021.08.18</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E5%BC%95%E5%AD%90"><span class="nav-number">2.1.</span> <span class="nav-text">A.引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E5%8F%AF%E7%88%B1%E7%B2%BE%E7%81%B5%E5%AE%9D%E8%B4%9D"><span class="nav-number">2.2.</span> <span class="nav-text">B.可爱精灵宝贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%9B%B8%E4%BA%92%E5%86%8D%E5%BD%92%E7%9A%84%E9%B9%85%E5%A6%88%E5%A6%88"><span class="nav-number">2.3.</span> <span class="nav-text">C.相互再归的鹅妈妈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E7%9B%9F%E8%AA%93%E7%9A%84%E6%96%87%E8%89%BA%E5%A4%8D%E5%85%B4"><span class="nav-number">2.4.</span> <span class="nav-text">D.盟誓的文艺复兴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021-08-19"><span class="nav-number">3.</span> <span class="nav-text">2021.08.19</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E6%B2%A1%E6%9C%89%E7%A1%9D%E7%83%9F%E7%9A%84%E6%88%98%E4%BA%89"><span class="nav-number">3.1.</span> <span class="nav-text">A.没有硝烟的战争</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E7%A7%98%E5%AF%86%E9%80%9A%E9%81%93"><span class="nav-number">3.2.</span> <span class="nav-text">B.秘密通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E5%9F%8E%E5%B8%82%E7%8C%8E%E4%BA%BA"><span class="nav-number">3.3.</span> <span class="nav-text">C.城市猎人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E6%97%A0%E9%99%90%E8%BF%9C%E7%82%B9%E7%9A%84%E7%89%B5%E7%89%9B%E6%98%9F"><span class="nav-number">3.4.</span> <span class="nav-text">D.无限远点的牵牛星</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021-08-20"><span class="nav-number">4.</span> <span class="nav-text">2021.08.20</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E8%B7%AF%E5%BE%84%E8%AE%A1%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">A.路径计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-BRT"><span class="nav-number">4.2.</span> <span class="nav-text">B.BRT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-xor"><span class="nav-number">4.3.</span> <span class="nav-text">C.xor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E6%A0%B8%E7%B3%96"><span class="nav-number">4.4.</span> <span class="nav-text">D.核糖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021-08-21"><span class="nav-number">5.</span> <span class="nav-text">2021.08.21</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E8%B5%9B"><span class="nav-number">5.1.</span> <span class="nav-text">A.赛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Merchant"><span class="nav-number">5.2.</span> <span class="nav-text">B.Merchant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-Equation"><span class="nav-number">5.3.</span> <span class="nav-text">C.Equation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-Rectangle"><span class="nav-number">5.4.</span> <span class="nav-text">D.Rectangle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021-08-23"><span class="nav-number">6.</span> <span class="nav-text">2021.08.23</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-xor"><span class="nav-number">6.1.</span> <span class="nav-text">A.xor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-magic"><span class="nav-number">6.2.</span> <span class="nav-text">B.magic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-strGame"><span class="nav-number">6.3.</span> <span class="nav-text">C.strGame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E7%A5%9E%E7%A7%98%E6%95%B0%E9%97%AE%E9%A2%98"><span class="nav-number">6.4.</span> <span class="nav-text">D.神秘数问题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="YCS_GG"
+      src="/upload/avatar.png">
+  <p class="site-author-name" itemprop="name">YCS_GG</p>
+  <div class="site-description" itemprop="description">Asusetic eru quinours.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ycsgg" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ycsgg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ycs_gg@outlook.com" title="E-Mail → mailto:ycs_gg@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/YCS_GG" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;YCS_GG" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YCS_GG</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">72k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'TrovinwzEolWMfq5uPwxsuXK-gzGzoHsz',
+      appKey     : 'YHcsqFBalXqibMhpTriyFjPF',
+      placeholder: "nya~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

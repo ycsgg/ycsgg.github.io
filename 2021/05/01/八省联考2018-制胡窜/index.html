@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ycs_gg.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="除了代码有点难调还是挺妙的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="八省联考2018 制胡窜">
+<meta property="og:url" content="https://ycs_gg.github.io/2021/05/01/%E5%85%AB%E7%9C%81%E8%81%94%E8%80%832018-%E5%88%B6%E8%83%A1%E7%AA%9C/index.html">
+<meta property="og:site_name" content="Asusetic">
+<meta property="og:description" content="除了代码有点难调还是挺妙的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-15T07:29:32.606Z">
+<meta property="article:author" content="YCS_GG">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="SAM">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ycs_gg.github.io/2021/05/01/%E5%85%AB%E7%9C%81%E8%81%94%E8%80%832018-%E5%88%B6%E8%83%A1%E7%AA%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>八省联考2018 制胡窜 | Asusetic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Asusetic</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-comments">
+
+    <a href="/comments/" rel="section"><i class="fas fa-comments fa-fw"></i>评论</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ycs_gg.github.io/2021/05/01/%E5%85%AB%E7%9C%81%E8%81%94%E8%80%832018-%E5%88%B6%E8%83%A1%E7%AA%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/upload/avatar.png">
+      <meta itemprop="name" content="YCS_GG">
+      <meta itemprop="description" content="Asusetic eru quinours.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Asusetic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          八省联考2018 制胡窜
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-01T00:00:00+00:00">2021-05-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">杂题</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/01/%E5%85%AB%E7%9C%81%E8%81%94%E8%80%832018-%E5%88%B6%E8%83%A1%E7%AA%9C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/01/%E5%85%AB%E7%9C%81%E8%81%94%E8%80%832018-%E5%88%B6%E8%83%A1%E7%AA%9C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>除了代码有点难调还是挺妙的</p>
+<span id="more"></span>
+
+<p>题意：将一个字符串$S$分为三段$[1,i],[i+1,j-1],[j,n]$ 至少有一段包含了子串$S_{l,r}$的方案数</p>
+<p>至少有一段不太好统计，考虑总共的方案数是$\binom{n-1}{2}$，如果能减去三段全不包含的就能得到答案</p>
+<p>至少我们得知道$S_{l,r}$的所有位置，那假设我们就知道了（？）所有形如$[l_i,r_i]$的区间是$S_{l,r}$的位置，为了方便设有$m$个区间且按$l$从小到大排序</p>
+<p>首先可以发现如果有三个子串不重叠必然为$0$</p>
+<p>否则分类讨论</p>
+<h4 id="Case-1"><a href="#Case-1" class="headerlink" title="Case 1:"></a>Case 1:</h4><p>如果最左的子串和最右的子串重叠，即$r_1&gt;l_{m}$</p>
+<p>那么我们对$i$的选取讨论一下首先肯定是在$[1,r_1)$</p>
+<p>如果$i\in[1,l_1)$那么$j$只能选$(l_m,r_1]$，贡献为$(l_1-1)(r_1-l_m)$</p>
+<p>如果$i\in[l_i,l_{i+1})$，此时$j$的限制是$(l_m,r_{i+1}]$，贡献为$\sum(l_{i+1}-l_i)(r_{i+1}-l_m)$</p>
+<p>如果$i\in[l_{i+1},r_1)$ 仅需保证$i+1&lt;j$，贡献为$\binom{r1-l_m}{2}+(r_1-l_m)(n-r_1)$</p>
+<h4 id="Case-2"><a href="#Case-2" class="headerlink" title="Case 2:"></a>Case 2:</h4><p>如果最左的子串和最右的子串不交，即$r_1&lt;l_m$</p>
+<p>首先如果$i \in [1,l_1)$是没法选的</p>
+<p>当$i\in[l_i,l_{i+1}]$略麻烦，实际上也能写出这个式子$\sum(r_{i+1}-r_i)(r_{i+1}-l_m)$ 要求是$l_m&lt;r_{i+1}$ 且$l_{i+1}&lt;r_1$</p>
+<p>但实际上会漏掉一些答案，还需要找到$r_1+len-1$在$endpos$中的前驱和后继$p_1,p_2$（建议画图理解）贡献为$(r_1-l_{p1})(r_{p2}-l_m)$</p>
+<p>所以最终我们要维护区间最大最小，和$(r_{i+1}-r_i)r_{i+1}$与$(r_{i+1}-r_i)$（Case1中求和也可以改成这样）</p>
+<p>对于询问先判断是否有三个相交的区间，然后讨论</p>
+<p>前后缀可以利用最大最小来查询</p>
+<p>至于$endpos$集合（也就是$[l_i,r_i]$），虽然在SAM定义里有这个东西，但实际上建出来的SAM是没有的</p>
+<p>但是可以考虑每一个状态的$endpos$是他的$link$的所有点的$endpos$并集，这个东西可以跑线段树合并</p>
+<p>具体来说是对于每一个前缀$i$插入到权值线段树里，然后$dfs$搞出来所有的$endpos$ </p>
+<p>找$S_{l,r}$在SAM上的位置可以倍增</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e5</span> + <span class="number">6</span>;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="keyword">int</span> n, q;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line">    <span class="keyword">int</span> nxt;</span><br><span class="line">&#125; edge[N * <span class="number">4</span>];</span><br><span class="line"><span class="keyword">int</span> head[N * <span class="number">2</span>], ecnt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    edge[++ecnt].v = v;</span><br><span class="line">    edge[ecnt].nxt = head[u];</span><br><span class="line">    head[u]        = ecnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> SegmentTree &#123;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e5</span> + <span class="number">6</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> mmin, mmax;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> s1, s2;</span><br><span class="line">    <span class="keyword">int</span> ls, rs;</span><br><span class="line">&#125; tr[maxn * <span class="number">40</span>];</span><br><span class="line"><span class="keyword">int</span> tot;</span><br><span class="line"><span class="function">Node <span class="title">merge</span><span class="params">(<span class="keyword">const</span> Node &amp;a, <span class="keyword">const</span> Node &amp;b)</span> </span>&#123;</span><br><span class="line">    Node c;</span><br><span class="line">    c.mmin = <span class="built_in">min</span>(a.mmin, b.mmin);</span><br><span class="line">    c.mmax = <span class="built_in">max</span>(a.mmax, b.mmax);</span><br><span class="line">    c.s1   = a.s1 + b.s1 + b.mmin * <span class="number">1LL</span> * (b.mmin - a.mmax);</span><br><span class="line">    c.s2   = a.s2 + b.s2 + b.mmin - a.mmax;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (tr[x].ls &amp;&amp; tr[x].rs) &#123;</span><br><span class="line">        tr[x].mmin = <span class="built_in">min</span>(tr[tr[x].ls].mmin, tr[tr[x].rs].mmin);</span><br><span class="line">        tr[x].mmax = <span class="built_in">max</span>(tr[tr[x].ls].mmax, tr[tr[x].rs].mmax);</span><br><span class="line">        tr[x].s1 =</span><br><span class="line">            tr[tr[x].ls].s1 + tr[tr[x].rs].s1 +</span><br><span class="line">            tr[tr[x].rs].mmin * <span class="number">1LL</span> * (tr[tr[x].rs].mmin - tr[tr[x].ls].mmax);</span><br><span class="line">        tr[x].s2 = tr[tr[x].ls].s2 + tr[tr[x].rs].s2 + tr[tr[x].rs].mmin -</span><br><span class="line">                   tr[tr[x].ls].mmax;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (tr[x].ls) &#123;</span><br><span class="line">        <span class="keyword">int</span> t_ls = tr[x].ls;</span><br><span class="line">        <span class="keyword">int</span> t_rs = tr[x].rs;</span><br><span class="line">        tr[x]    = tr[tr[x].ls];</span><br><span class="line">        tr[x].ls = t_ls;</span><br><span class="line">        tr[x].rs = t_rs;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> t_ls = tr[x].ls;</span><br><span class="line">        <span class="keyword">int</span> t_rs = tr[x].rs;</span><br><span class="line">        tr[x]    = tr[tr[x].rs];</span><br><span class="line">        tr[x].ls = t_ls;</span><br><span class="line">        tr[x].rs = t_rs;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">querymax</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!rt)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R)</span><br><span class="line">        <span class="keyword">return</span> tr[rt].mmax;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>, ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= mid)</span><br><span class="line">        ans = <span class="built_in">querymax</span>(tr[rt].ls, l, mid, L, R);</span><br><span class="line">    <span class="keyword">if</span> (R &gt; mid)</span><br><span class="line">        ans = <span class="built_in">max</span>(ans, <span class="built_in">querymax</span>(tr[rt].rs, mid + <span class="number">1</span>, r, L, R));</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">querymin</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!rt)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R)</span><br><span class="line">        <span class="keyword">return</span> tr[rt].mmin;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>, ans = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= mid)</span><br><span class="line">        ans = <span class="built_in">querymin</span>(tr[rt].ls, l, mid, L, R);</span><br><span class="line">    <span class="keyword">if</span> (R &gt; mid)</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, <span class="built_in">querymin</span>(tr[rt].rs, mid + <span class="number">1</span>, r, L, R));</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">Node c_res;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cquery</span><span class="params">(<span class="keyword">int</span> rt, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!rt)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c_res.mmin == <span class="number">0</span>)</span><br><span class="line">            c_res = tr[rt];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            c_res = <span class="built_in">merge</span>(c_res, tr[rt]);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= mid)</span><br><span class="line">        <span class="built_in">cquery</span>(tr[rt].ls, l, mid, L, R);</span><br><span class="line">    <span class="keyword">if</span> (R &gt; mid)</span><br><span class="line">        <span class="built_in">cquery</span>(tr[rt].rs, mid + <span class="number">1</span>, r, L, R);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> &amp;rt, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!rt)</span><br><span class="line">        rt = ++tot;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        tr[rt].mmin = tr[rt].mmax = p;</span><br><span class="line">        tr[rt].s1 = tr[rt].s2 = <span class="number">0</span>;</span><br><span class="line">        tr[rt].ls = tr[rt].rs = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (p &lt;= mid)</span><br><span class="line">        <span class="built_in">update</span>(tr[rt].ls, l, mid, p);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">update</span>(tr[rt].rs, mid + <span class="number">1</span>, r, p);</span><br><span class="line">    <span class="built_in">pushup</span>(rt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!x || !y)</span><br><span class="line">        <span class="keyword">return</span> x + y;</span><br><span class="line">    <span class="keyword">int</span> rt    = ++tot;</span><br><span class="line">    tr[rt].ls = <span class="built_in">merge</span>(tr[x].ls, tr[y].ls);</span><br><span class="line">    tr[rt].rs = <span class="built_in">merge</span>(tr[x].rs, tr[y].rs);</span><br><span class="line">    <span class="built_in">pushup</span>(rt);</span><br><span class="line">    <span class="keyword">return</span> rt;</span><br><span class="line">&#125;</span><br><span class="line">&#125; <span class="comment">// namespace SegmentTree</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> rt[N], dep[N], fa[N * <span class="number">2</span>][<span class="number">19</span>];</span><br><span class="line"><span class="keyword">int</span> pos[N];</span><br><span class="line"><span class="keyword">namespace</span> SAM &#123;</span><br><span class="line"><span class="keyword">int</span> nxt[N * <span class="number">2</span>][<span class="number">10</span>], link[N * <span class="number">2</span>], len[N * <span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> cnt, last;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cur = ++cnt;</span><br><span class="line">    <span class="keyword">int</span> p   = last;</span><br><span class="line">    last    = cur;</span><br><span class="line">    pos[id] = cur;</span><br><span class="line">    <span class="keyword">while</span> (p &amp;&amp; !nxt[p][c]) &#123;</span><br><span class="line">        nxt[p][c] = cur;</span><br><span class="line">        p         = link[p];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!p) &#123;</span><br><span class="line">        link[cur] = <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> q = nxt[p][c];</span><br><span class="line">        <span class="keyword">if</span> (len[p] + <span class="number">1</span> == len[q]) &#123;</span><br><span class="line">            link[cur] = q;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> cq  = ++cnt;</span><br><span class="line">            len[cq] = len[p] + <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">memcpy</span>(nxt[cq], nxt[q], <span class="built_in"><span class="keyword">sizeof</span></span>(nxt[q]));</span><br><span class="line">            link[cq] = link[q];</span><br><span class="line">            link[q] = link[cur] = cq;</span><br><span class="line">            <span class="keyword">while</span> (p &amp;&amp; nxt[p][c] == q) &#123;</span><br><span class="line">                nxt[p][c] = cq;</span><br><span class="line">                p         = link[p];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (link[i]) &#123;</span><br><span class="line">            <span class="built_in">add</span>(link[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        SegmentTree::<span class="built_in">update</span>(rt[pos[i]], <span class="number">1</span>, n, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    fa[x][<span class="number">0</span>] = link[x];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">18</span>; i++) &#123;</span><br><span class="line">        fa[x][i] = fa[fa[x][i - <span class="number">1</span>]][i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[x]; i; i = edge[i].nxt) &#123;</span><br><span class="line">        <span class="keyword">int</span> v  = edge[i].v;</span><br><span class="line">        dep[v] = dep[x] + <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(v);</span><br><span class="line">        <span class="keyword">if</span> (x != <span class="number">1</span>) &#123;</span><br><span class="line">            rt[x] = SegmentTree::<span class="built_in">merge</span>(rt[x], rt[v]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125; <span class="comment">// namespace SAM</span></span><br><span class="line"><span class="function">ll <span class="title">C2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1ll</span> * n * (n - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">querym</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">using</span> SAM::len;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> SegmentTree;</span><br><span class="line">    <span class="keyword">int</span> plen = r - l + <span class="number">1</span>, x = pos[r];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">18</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (len[fa[x][i]] &gt;= plen) &#123;</span><br><span class="line">            x = fa[x][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> L = tr[rt[x]].mmin, R = tr[rt[x]].mmax;</span><br><span class="line">    <span class="keyword">if</span> (L &lt; R - plen * <span class="number">2</span> + <span class="number">1</span> &amp;&amp;</span><br><span class="line">        <span class="built_in">querymax</span>(rt[x], <span class="number">1</span>, n, L, R - plen) - plen + <span class="number">1</span> &gt; L)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">C2</span>(n - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (R - plen + <span class="number">1</span> &lt;= L) &#123;</span><br><span class="line">        Node now = tr[rt[x]];</span><br><span class="line">        <span class="keyword">int</span> lm   = R - plen + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans =</span><br><span class="line">            now.s1 - now.s2 * lm + <span class="built_in">C2</span>(L - lm) + (L - lm) * <span class="number">1LL</span> * (n - plen);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">C2</span>(n - <span class="number">1</span>) - ans;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        c_res  = (Node)&#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> lm = R - plen + <span class="number">1</span>, poslm = <span class="built_in">querymax</span>(rt[x], <span class="number">1</span>, n, <span class="number">1</span>, lm);</span><br><span class="line">        <span class="built_in">cquery</span>(rt[x], <span class="number">1</span>, n, poslm, L + plen - <span class="number">1</span>);</span><br><span class="line">        Node now      = c_res;</span><br><span class="line">        <span class="keyword">int</span> p1        = <span class="built_in">querymax</span>(rt[x], <span class="number">1</span>, n, <span class="number">1</span>, L + plen - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> p2        = <span class="built_in">querymin</span>(rt[x], <span class="number">1</span>, n, L + plen, n);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = now.s1 - now.s2 * lm +</span><br><span class="line">                        (p2 &gt; lm ? (L - (p1 - plen + <span class="number">1</span>)) * <span class="number">1LL</span> * (p2 - lm) : <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">C2</span>(n - <span class="number">1</span>) - ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    cin &gt;&gt; s + <span class="number">1</span>;</span><br><span class="line">    SAM::last = SAM::cnt = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        SAM::<span class="built_in">insert</span>(s[i] - <span class="string">&#x27;0&#x27;</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    SAM::<span class="built_in">build</span>();</span><br><span class="line">    <span class="keyword">while</span> (q--) &#123;</span><br><span class="line">        <span class="keyword">int</span> l, r;</span><br><span class="line">        cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">querym</span>(l, r) &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Asusetic eru quionours</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
+              <a href="/tags/SAM/" rel="tag"><i class="fa fa-tag"></i> SAM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/29/%E8%81%94%E5%90%88%E7%9C%81%E9%80%892021-A%E5%8D%B7/" rel="prev" title="联合省选2021 A卷">
+      <i class="fa fa-chevron-left"></i> 联合省选2021 A卷
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/01/PKUWC2019-D1T1/" rel="next" title="PKUWC2019 D1T1">
+      PKUWC2019 D1T1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Case-1"><span class="nav-number">1.</span> <span class="nav-text">Case 1:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Case-2"><span class="nav-number">2.</span> <span class="nav-text">Case 2:</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="YCS_GG"
+      src="/upload/avatar.png">
+  <p class="site-author-name" itemprop="name">YCS_GG</p>
+  <div class="site-description" itemprop="description">Asusetic eru quinours.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ycsgg" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ycsgg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ycs_gg@outlook.com" title="E-Mail → mailto:ycs_gg@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/YCS_GG" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;YCS_GG" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YCS_GG</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">72k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'TrovinwzEolWMfq5uPwxsuXK-gzGzoHsz',
+      appKey     : 'YHcsqFBalXqibMhpTriyFjPF',
+      placeholder: "nya~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

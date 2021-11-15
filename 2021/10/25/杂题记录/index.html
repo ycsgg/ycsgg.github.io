@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ycs_gg.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Every page of tragedy is thrown away Burned out in the flame">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杂题记录">
+<meta property="og:url" content="https://ycs_gg.github.io/2021/10/25/%E6%9D%82%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Asusetic">
+<meta property="og:description" content="Every page of tragedy is thrown away Burned out in the flame">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-25T11:11:50.000Z">
+<meta property="article:modified_time" content="2021-11-15T07:29:32.606Z">
+<meta property="article:author" content="YCS_GG">
+<meta property="article:tag" content="DP">
+<meta property="article:tag" content="树状数组">
+<meta property="article:tag" content="KMP">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="线段树">
+<meta property="article:tag" content="组合计数">
+<meta property="article:tag" content="双指针">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ycs_gg.github.io/2021/10/25/%E6%9D%82%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>杂题记录 | Asusetic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Asusetic</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-comments">
+
+    <a href="/comments/" rel="section"><i class="fas fa-comments fa-fw"></i>评论</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ycs_gg.github.io/2021/10/25/%E6%9D%82%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/upload/avatar.png">
+      <meta itemprop="name" content="YCS_GG">
+      <meta itemprop="description" content="Asusetic eru quinours.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Asusetic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          杂题记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-25 11:11:50" itemprop="dateCreated datePublished" datetime="2021-10-25T11:11:50+00:00">2021-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/25/%E6%9D%82%E9%A2%98%E8%AE%B0%E5%BD%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/25/%E6%9D%82%E9%A2%98%E8%AE%B0%E5%BD%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Every page of tragedy is thrown away Burned out in the flame</p>
+<span id="more"></span>
+
+<p>随便做</p>
+<h3 id="Edu111-D-Excellent-Arrays"><a href="#Edu111-D-Excellent-Arrays" class="headerlink" title="Edu111 D. Excellent Arrays"></a>Edu111 D. Excellent Arrays</h3><p>如果在 $i$ 位置上放了一个 $i+a$ 另一个位置是 $j-a$ 和就能满足条件</p>
+<p>显然最大值是一半选 $+a$ 一半选 $-a$ 是个组合数</p>
+<p>然后讨论下边界，有些地方不能任选</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1550/submission/132969888">Submission</a></p>
+<h3 id="Edu112-E-Boring-Segments"><a href="#Edu112-E-Boring-Segments" class="headerlink" title="Edu112 E. Boring Segments"></a>Edu112 E. Boring Segments</h3><p>极差的话考虑排序之后双指针，维护全覆盖用线段树即可</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1555/submission/132974981">Submission</a></p>
+<h3 id="Edu112-D-Say-No-to-Palindromes"><a href="#Edu112-D-Say-No-to-Palindromes" class="headerlink" title="Edu112 D. Say No to Palindromes"></a>Edu112 D. Say No to Palindromes</h3><p> 只有三个字符的无回文子串只能是 $abc$ 这样的排列，一共 $3!$ 种，每种都试一下做个前缀和即可</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1555/submission/132983064">Submission</a></p>
+<h3 id="Edu112-F-Good-Graph"><a href="#Edu112-F-Good-Graph" class="headerlink" title="Edu112 F. Good Graph"></a>Edu112 F. Good Graph</h3><p>考虑如果现在是一个好图，加入一个新边的影响，如果他连接了两个连通块肯定可以加</p>
+<p>否则需要考虑生成树，首先需要保证异或和为 $1$ ，然后需要保证树上 $u \to v$ 的路径都不是其他环</p>
+<p>因为如果有环相交构成的大环就是 $0$ 了，这个可以给边打标记，因为每个边仅被访问一次，所以直接树状数组大力加</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1555/submission/133055595">Submission</a></p>
+<h3 id="CF721-Div2-D-MEX-Tree"><a href="#CF721-Div2-D-MEX-Tree" class="headerlink" title="CF721 Div2 D. MEX Tree"></a>CF721 Div2 D. MEX Tree</h3><p>挺好想的，不太好写，$\operatorname{mex}=k$ 的肯定是选择了 $[0,k-1]$ 的一条链加上不包含 $k$ 的某些点</p>
+<p>找链可以直接跳上去拼接，但是去掉包含 $k$ 的点需要巨大多分类讨论，为了避免讨论可以差分一下，只用找包含 $[0,k]$ 的路径</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1527/submission/133119317">Submission</a></p>
+<h3 id="CF708-Div2-E2-Square-free-division"><a href="#CF708-Div2-E2-Square-free-division" class="headerlink" title="CF708 Div2 E2. Square-free division"></a>CF708 Div2 E2. Square-free division</h3><p>暴力 $dp_{i,j}$ 表示前 $i$ 个修改了 $j$ 次的最小段，每次枚举前面的位置是 $O(n^2k)$ 的</p>
+<p>可以发现，能取的话肯定是取最靠前的最优，所以预处理 $(r,i)$ 表示点 $r$ 修改 $i$ 次最左边的位置即可 $O(nk^2)$</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1497/submission/133129172">Submission</a></p>
+<h3 id="Edu109-E-Assimilation-IV"><a href="#Edu109-E-Assimilation-IV" class="headerlink" title="Edu109 E. Assimilation IV"></a>Edu109 E. Assimilation IV</h3><p>大降智<del>少推式子多动脑子</del></p>
+<p>考虑每个点的概率，共 $n!$ 种可能，被选到的是排列中至少有一个 $i$ 使得 $i+a_i \ge n$ 发现没啥好办法统计…</p>
+<p>补集转化，一个都没有就需要第 $n$ 位至少是 $2$ 第 $n-1$ 位至少是 $3$ </p>
+<p>直接乘起来统计即可</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1525/submission/133146870">Submission</a></p>
+<h3 id="Edu109-C-Robot-Collisions"><a href="#Edu109-C-Robot-Collisions" class="headerlink" title="Edu109 C. Robot Collisions"></a>Edu109 C. Robot Collisions</h3><p>只能在整数值相交意味着可以奇偶分开处理，每次相撞必然是里的最近的 LR 相撞</p>
+<p>形如 LLRRLRLRLLLRL 的序列可以转换成括号序列，每次匹配的括号相撞，剩余的括号到了边界后反转后匹配</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1525/submission/133155855">Submission</a></p>
+<h3 id="Edu113-D-Inconvenient-Pairs"><a href="#Edu113-D-Inconvenient-Pairs" class="headerlink" title="Edu113 D. Inconvenient Pairs"></a>Edu113 D. Inconvenient Pairs</h3><p>距离不等于曼哈顿距离的必然不在十字交叉口</p>
+<p>考虑在横线方向上的答案 两个点不等于曼哈顿距离的一定处于两个不同的横线上，并且中间没有竖线，开个 map 统计即可</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1569/submission/133226359">Submission</a></p>
+<h3 id="ABC224-F-Problem-where-s-Separate-Digits"><a href="#ABC224-F-Problem-where-s-Separate-Digits" class="headerlink" title="ABC224 F. Problem where +s Separate Digits"></a>ABC224 F. Problem where +s Separate Digits</h3><p>考虑每一位 $x$ 的贡献，如果他在从后往前数第 $k$ 个，它可以成为第 $[1,k-1]$ 位数，贡献分别为 $x\times10^i$ </p>
+<p>他成为第 $i$ 位的方案数是自己后面 $i$ 位都没有 $+$ 的方案，总方案为 $(\frac{1}{2})^{n-1}$ 这种方案占比为 $(\frac{1}{2})^{i}$ 需要注意因为最后不能放加号，所以他贡献为 $x\times 10^{k-1}$ 的方案应该是是 $(\frac{1}{2})^{k-1}$ </p>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc224/submissions/26843811">Submission</a></p>
+<h3 id="AGC035D-Add-and-Remove"><a href="#AGC035D-Add-and-Remove" class="headerlink" title="AGC035D Add and Remove"></a>AGC035D Add and Remove</h3><p>发现 $a_1$ 和 $a_n$ 没意义，一定只贡献一次</p>
+<p>剩下的考虑计算每个元素对答案的贡献次数</p>
+<p>反着进行这个过程，在 $a_i,a_{i+1}$ 种插入一个数，若 $a_i$ 被算了 $k_i$ 次这个数会被算 $k_i+k_{i+1}$ 次</p>
+<p>反着推，设 $dp_{l,r,m,n}$ 表示第 $l$ 个算了 $m$ 次 第 $r$ 个算了 $n$ 次的最小贡献</p>
+<p>有转移 $dp_{l,r,m,n} = \min(dp_{l,k-1,m,m+n}+dp_{k+1,r,m+n,n} +(m+n)a_i)$</p>
+<p>状态上界是 $2^n$</p>
+<p>DFS 做就行</p>
+<h3 id="SPOJ-PERIODNI"><a href="#SPOJ-PERIODNI" class="headerlink" title="SPOJ PERIODNI"></a>SPOJ PERIODNI</h3><p>分成多个矩形后每个矩形块可以独立DP然后合并</p>
+<p>分成矩形这个过程就是在笛卡尔树上做DP，设 $dp_{i,j}$ 是第 $i$ 个子树里放了 $j$ 个数的方案数，然后合并子树的方案后计算当前矩形的方案即可</p>
+<h3 id="CF501-Div3-F-Bracket-Substring"><a href="#CF501-Div3-F-Bracket-Substring" class="headerlink" title="CF501 Div3 F. Bracket Substring"></a>CF501 Div3 F. Bracket Substring</h3><p>设 $dp_{i,j,k}$ 表示当前是第 $i$ 位，栈高 $j$ ，匹配到了子串的第 $k$ 位，用 KMP 预处理一下匹配即可 $O(n^3)$</p>
+<h3 id="CF-Edu-114"><a href="#CF-Edu-114" class="headerlink" title="CF Edu 114"></a>CF Edu 114</h3><p>VP了一场，卡在E的分类讨论了</p>
+<h4 id="A-C"><a href="#A-C" class="headerlink" title="A~C"></a>A~C</h4><p>略</p>
+<h4 id="D-The-Strongest-Build"><a href="#D-The-Strongest-Build" class="headerlink" title="D. The Strongest Build"></a>D. The Strongest Build</h4><p>爆搜题，不知道为啥看错题以为最后的构造要升序卡了一会儿</p>
+<p>发现 $n$ 才 $10$ 最有答案肯定是全选最大的，如果不能选最大的，就找一个位置选小一点的，然后堆优化BFS，第一个取出来的没被 ban 的就是答案</p>
+<p>判断是不是被 ban 直接把 vector 塞进 map 里就行</p>
+<p>因为没记录是否访问 MLE * 2 ，因为未知错误 WA * 2</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1574/submission/133446511">Submission</a></p>
+<h4 id="E-Coloring"><a href="#E-Coloring" class="headerlink" title="E. Coloring"></a>E. Coloring</h4><p>先考虑空的状态</p>
+<p>发现如果有两个相邻的格子同色，那就可以直接递推出所有的状态了</p>
+<p>即 $2^m-2$ 减去了没有相邻同色的方案</p>
+<p>而没有相邻同色的话每一行都可以决策是否与上一行相同或相反，即 $2\times 2^{n-1}$</p>
+<p>如果加上限制，对于没有相邻同色的情况，意味着这一行被确定了，方案数要除 $2$ ，即 $2^{空行}$</p>
+<p>同理，对于有相邻同色的就是 $2^{空列}$</p>
+<p>还需要考虑有可能不能填成要求的状态，需要分类讨论</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1574/submission/133558793">Submission</a></p>
+<h4 id="F-Occurrences"><a href="#F-Occurrences" class="headerlink" title="F. Occurrences"></a>F. Occurrences</h4><p>一个串出现的次数肯定不能比它的一个元素多，所以只要他的元素出现过，他就得出现过</p>
+<p>如果把每个数按照序列顺序连边，每选定一个点就得把整个链放进去，如果这个链有分支或成环肯定是没办法选的</p>
+<p>所以并查集维护能放进去的链，dp 方案即可</p>
+<p>把连通块大小一样的一起做，最多只有 $\sqrt{k}$ 个，复杂度 $O(m\sqrt{k})$</p>
+<h3 id="CF-Edu106-D-The-Number-of-Pairs"><a href="#CF-Edu106-D-The-Number-of-Pairs" class="headerlink" title="CF Edu106 D. The Number of Pairs"></a>CF Edu106 D. The Number of Pairs</h3><p><del>怎么又开始数学题了</del></p>
+<p>设 $g = \gcd(a,b)$ $a’=\dfrac{a}{g},b’=\dfrac{b}{g}$</p>
+<p>则 $cga’b’-dg=x \Rightarrow ca’b’-d=\dfrac{x}{g} $ </p>
+<p>即 $g|x$ 设 $k = \dfrac{x}{g}$</p>
+<p>则 $a’b’ = \dfrac{k+d}{c}$</p>
+<p>所以 $c|k+d$ , 要求 $\gcd(a’,b’)=1$ 那么 $a’,b’$ 就是 $\dfrac{k+d}{c}$ 的质因子集合划分，即 $2^c$ 种方案</p>
+<p>枚举 $g$ 即可</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1499/submission/133599725">Submission</a></p>
+<h3 id="CF-Edu-105-D-Dogeforces"><a href="#CF-Edu-105-D-Dogeforces" class="headerlink" title="CF Edu 105 D. Dogeforces"></a>CF Edu 105 D. Dogeforces</h3><p>因为权值互异，所以按 LCA 的权值排序合并恰好形成了树形结构</p>
+<p>每次合并当前的两个节点到一颗子树里，用并查集维护</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1494/submission/133947269">Submission</a></p>
+<h3 id="CF749-Div1-2-E-Moment-of-Bloom"><a href="#CF749-Div1-2-E-Moment-of-Bloom" class="headerlink" title="CF749 Div1+2 E. Moment of Bloom"></a>CF749 Div1+2 E. Moment of Bloom</h3><p>图上奇偶性 -&gt; 生成树 ？</p>
+<p>首先如果存在被访问奇数次的节点肯定无解，大概挺好理解的，而如果有解直接在生成树上找路径即可</p>
+<p>原因是如果叶子结点成为端点次数是偶数，那么他与父节点边权是偶数，如此归纳即可</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1583/submission/133954884">Submission</a></p>
+<h3 id="CF-Harbour-Space-Scholarship-Contest-2021-2022-H"><a href="#CF-Harbour-Space-Scholarship-Contest-2021-2022-H" class="headerlink" title="CF Harbour.Space Scholarship Contest 2021-2022 H"></a>CF Harbour.Space Scholarship Contest 2021-2022 H</h3><p>一个很妙的做法</p>
+<p>强制每个 $x$ 只能使用那些，与 $x$ 相比只有最低的 $d$ 位可能不同的元素。</p>
+<p>考虑一位一位更新答案，设 $f(x,d)$ 为数字 $x$ 在 $d$ 位上的答案，维护 $\mathrm{mmax}(x,d)$ 和 $\mathrm{mmin}(x,d)$ 为数字 $x$ 在 $d$ 位的异或最大/最小值</p>
+<p>$\mathrm{mmax}(x,d)=\max({\mathrm{mmax}(x,d-1),\mathrm{mmax}(x\oplus2^{d},d-1)+2^{d=1}})$</p>
+<p>$\mathrm{mmin}(x,d)=\max({\mathrm{mmin}(x,d-1),\mathrm{mmin}(x\oplus2^{d},d-1)+2^{d=1}})$</p>
+<p>对于 $f(x,d)$ 仅需要决策 $f(x,d),f(x\oplus2^d,d),\mathrm{mmin}(x,d)-\mathrm{mmax}(x,d)+2^{d}$ 即可</p>
+<h3 id="ARC114C-Sequence-Scores"><a href="#ARC114C-Sequence-Scores" class="headerlink" title="ARC114C Sequence Scores"></a>ARC114C Sequence Scores</h3><p>考虑加入一个新数字 $x$ 在长度为 $i$ 的序列的贡献</p>
+<p>如果 $x$ 不在其中，需要额外一次操作</p>
+<p>如果 $x$ 插入的位置是一个低点，不需要操作</p>
+<p>否则需要一次额外操作</p>
+<p>即 $F(i,x)$ 为这时的贡献，有 $F(i,x)=m^{i-1}-\sum\limits_{k=1}^{i-1}(m-x)^{i-1-k}\times m^{k-1}$</p>
+<p>即枚举 $x$ 出现的位置，减去情况 $2$</p>
+<p>$O(nm)$ 求和即可</p>
+<h3 id="2021江西ICPC省赛-C-水晶洞窟"><a href="#2021江西ICPC省赛-C-水晶洞窟" class="headerlink" title="2021江西ICPC省赛 C. 水晶洞窟"></a>2021江西ICPC省赛 C. 水晶洞窟</h3><p>曼哈顿距离 $x,y$ 独立</p>
+<p>要求的就是 $\dfrac{n(n-1)(n+1)}{6}+\max(\sum\limits_{i=1}^{n}\sum\limits_{j=i+1}^{n}|a_i-a_j|) (a_t \in [l_t,r_yt])$</p>
+<p>显然后边的最大值在 $a_i$ 都是端点处取到，设 $f(a_1,a_1,\dots,a_n)=\max(\sum\limits_{i=1}^{n}\sum\limits_{j=i+1}^{n}|a_i-a_j|) (a_t \in [l_t,r_yt]$ 则对 $a_i$ 差分得到</p>
+<p>$\Delta f_i=\sum\limits_{j=1}^{n}[a_j&lt;a_i]-[a_j&gt;a_i]$ 容易发现他单调不降，所以肯定是在端点取到最大值</p>
+<p>继续贪心的想，$a_i$ 的分布应该尽可能”均匀”</p>
+<p>证明咕</p>
+<p>设 $dp_{i,j}$ 表示到了第 $i$ 层选了 $j$ 个放在左边的最大值</p>
+<p>转移可以递推，假设一开始所有层的点都处在 $l_1,r_1$ 的位置上，左右各有 $\dfrac{n}{2}$ 个，每次决策一个点把其他点放下去</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/103366/submission/134276901">Submission</a></p>
+<h3 id="CF750-Div2-E-Pchelyonok-and-Segments"><a href="#CF750-Div2-E-Pchelyonok-and-Segments" class="headerlink" title="CF750 Div2 E. Pchelyonok and Segments"></a>CF750 Div2 E. Pchelyonok and Segments</h3><p>显然最长区间不能超过 $\sqrt{n}$</p>
+<p>从前到后不好考虑，需要从后向前考虑，记 $dp_{i,j}$ 为第 $i$ 位后缀，存在一个区间 $[l,r]$ 和为 $r-l+1=j$ 的最大区间和</p>
+<p>先转移 $dp_{i,j} \gets dp_{i+1,j}$ 若 $[i,i+j-1]$ 的区间和 $&lt; dp_{i+j,j-1}$ 则可以选择这个区间</p>
+<p>复杂度 $O(n\sqrt{n})$</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1582/submission/134399039">Submission</a></p>
+<h3 id="CF-Edu-116-D-Red-Blue-Matrix"><a href="#CF-Edu-116-D-Red-Blue-Matrix" class="headerlink" title="CF Edu 116 D. Red-Blue Matrix"></a>CF Edu 116 D. Red-Blue Matrix</h3><p>考虑枚举 $k \in [1,m-1]$ ，转换下条件就是前 $k$ 列的蓝色区域最大值小于红色区域最小值</p>
+<p>为了满足这个条件直接按照第一列的顺序排列，即选择染色至少是染前 $i$ 行蓝色，剩下的条件可以 $O(1)$ 二维最大值检查</p>
+<p>$O(nm)$</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/DP/" rel="tag"><i class="fa fa-tag"></i> DP</a>
+              <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 树状数组</a>
+              <a href="/tags/KMP/" rel="tag"><i class="fa fa-tag"></i> KMP</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 数论</a>
+              <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 线段树</a>
+              <a href="/tags/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 组合计数</a>
+              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"><i class="fa fa-tag"></i> 双指针</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/22/2021-10-20%E6%A8%A1%E6%8B%9F%E8%B5%9B/" rel="prev" title="2021.10.20模拟赛">
+      <i class="fa fa-chevron-left"></i> 2021.10.20模拟赛
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/26/%E9%A2%98%E8%A7%A3-%E7%9B%B4%E5%BE%84%E5%92%8C/" rel="next" title="题解-直径和">
+      题解-直径和 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Edu111-D-Excellent-Arrays"><span class="nav-number">1.</span> <span class="nav-text">Edu111 D. Excellent Arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edu112-E-Boring-Segments"><span class="nav-number">2.</span> <span class="nav-text">Edu112 E. Boring Segments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edu112-D-Say-No-to-Palindromes"><span class="nav-number">3.</span> <span class="nav-text">Edu112 D. Say No to Palindromes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edu112-F-Good-Graph"><span class="nav-number">4.</span> <span class="nav-text">Edu112 F. Good Graph</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF721-Div2-D-MEX-Tree"><span class="nav-number">5.</span> <span class="nav-text">CF721 Div2 D. MEX Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF708-Div2-E2-Square-free-division"><span class="nav-number">6.</span> <span class="nav-text">CF708 Div2 E2. Square-free division</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edu109-E-Assimilation-IV"><span class="nav-number">7.</span> <span class="nav-text">Edu109 E. Assimilation IV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edu109-C-Robot-Collisions"><span class="nav-number">8.</span> <span class="nav-text">Edu109 C. Robot Collisions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edu113-D-Inconvenient-Pairs"><span class="nav-number">9.</span> <span class="nav-text">Edu113 D. Inconvenient Pairs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ABC224-F-Problem-where-s-Separate-Digits"><span class="nav-number">10.</span> <span class="nav-text">ABC224 F. Problem where +s Separate Digits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AGC035D-Add-and-Remove"><span class="nav-number">11.</span> <span class="nav-text">AGC035D Add and Remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPOJ-PERIODNI"><span class="nav-number">12.</span> <span class="nav-text">SPOJ PERIODNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF501-Div3-F-Bracket-Substring"><span class="nav-number">13.</span> <span class="nav-text">CF501 Div3 F. Bracket Substring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF-Edu-114"><span class="nav-number">14.</span> <span class="nav-text">CF Edu 114</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-C"><span class="nav-number">14.1.</span> <span class="nav-text">A~C</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-The-Strongest-Build"><span class="nav-number">14.2.</span> <span class="nav-text">D. The Strongest Build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-Coloring"><span class="nav-number">14.3.</span> <span class="nav-text">E. Coloring</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#F-Occurrences"><span class="nav-number">14.4.</span> <span class="nav-text">F. Occurrences</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF-Edu106-D-The-Number-of-Pairs"><span class="nav-number">15.</span> <span class="nav-text">CF Edu106 D. The Number of Pairs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF-Edu-105-D-Dogeforces"><span class="nav-number">16.</span> <span class="nav-text">CF Edu 105 D. Dogeforces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF749-Div1-2-E-Moment-of-Bloom"><span class="nav-number">17.</span> <span class="nav-text">CF749 Div1+2 E. Moment of Bloom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF-Harbour-Space-Scholarship-Contest-2021-2022-H"><span class="nav-number">18.</span> <span class="nav-text">CF Harbour.Space Scholarship Contest 2021-2022 H</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC114C-Sequence-Scores"><span class="nav-number">19.</span> <span class="nav-text">ARC114C Sequence Scores</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2021%E6%B1%9F%E8%A5%BFICPC%E7%9C%81%E8%B5%9B-C-%E6%B0%B4%E6%99%B6%E6%B4%9E%E7%AA%9F"><span class="nav-number">20.</span> <span class="nav-text">2021江西ICPC省赛 C. 水晶洞窟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF750-Div2-E-Pchelyonok-and-Segments"><span class="nav-number">21.</span> <span class="nav-text">CF750 Div2 E. Pchelyonok and Segments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF-Edu-116-D-Red-Blue-Matrix"><span class="nav-number">22.</span> <span class="nav-text">CF Edu 116 D. Red-Blue Matrix</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="YCS_GG"
+      src="/upload/avatar.png">
+  <p class="site-author-name" itemprop="name">YCS_GG</p>
+  <div class="site-description" itemprop="description">Asusetic eru quinours.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ycsgg" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ycsgg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ycs_gg@outlook.com" title="E-Mail → mailto:ycs_gg@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/YCS_GG" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;YCS_GG" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YCS_GG</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">72k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'TrovinwzEolWMfq5uPwxsuXK-gzGzoHsz',
+      appKey     : 'YHcsqFBalXqibMhpTriyFjPF',
+      placeholder: "nya~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
